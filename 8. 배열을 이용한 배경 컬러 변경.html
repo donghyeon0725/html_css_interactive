@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>배열을 이용한 배경 컬러 변경</title>
+    <style>
+        body {
+            /* 배경이 변화하는 것에 대해서 속도 조절 가능 => 속성이 변화할 때 적용할 속도이다.*/
+            transition: background 2.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+        }
+        h1 {
+            font-size: 50px;
+            font-weight: bold;
+        }
+        button {
+            font-size: 20px;
+            padding: 10px 30px;
+            cursor: pointer;
+            /*
+            transition: font-size 2.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+            마찬가지로 이런것도 된다. 다만, 변경 이벤트가 일어나는 태그에 부착해야하는 것 같다.
+            */
+        }
+    </style>
+    <script>
+        //변수
+        window.onload = function() {
+            var prevBtn = document.querySelector('.prevBtn');
+            var nextBtn = document.querySelector('.nextBtn');
+            var h1 = document.getElementsByTagName("h1")[0];
+            var bgColorArr = ['#85FFBD','#FFFB7D','#E0C3FC','#00DBDE'];
+
+            var pageNum = 0;
+            var totalNum = 4;
+
+            prevBtn.addEventListener("click", function() {
+                pageNum > 0 ? pageNum-- : pageNum=totalNum-1;
+                bgColorChage();
+            })
+
+            nextBtn.addEventListener('click', function () {
+                pageNum < totalNum - 1 ? pageNum++ : pageNum = 0;
+                bgColorChage();
+                nextBtn.style.fontSize = "30px";
+            });
+
+            function bgColorChage() {
+                document.body.style.backgroundColor = bgColorArr[pageNum];
+                h1.innerHTML = `${pageNum} 페이지 입니다.`;
+            }
+            bgColorChage()
+        }
+
+
+    </script>
+
+</head>
+<body>
+    <button type="button" class="prevBtn">PREV</button>
+    <button type="button" class="nextBtn">NEXT</button>
+    <h1>title</h1>
+</body>
+</html>
