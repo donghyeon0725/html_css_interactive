@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>타이머_연봉계산기</title>
+    <style>
+        body {
+            height: 100vh;
+        }
+
+        .contWrap {
+            position: relative;
+            left: 50%;
+            top: 40%;
+            transform: translate(-50%, -50%);
+            text-align: center; /*이것을 안주면 내부의 h1 속성의 display 가 달라서 가운데 정렬이 안됨 */
+        }
+
+        .startBtn {
+            padding: 20px 40px;
+            font-size: 18px;
+            font-weight: bold;
+            border: 2px solid #e6e6e6;
+        }
+    </style>
+    <script>
+
+        window.onload = function () {
+            let startBtn = document.querySelector('.startBtn');
+            let num = document.querySelector('.num');
+            startBtn.addEventListener('click', function () {
+                interval();
+            });
+
+            let timer;
+
+            function interval() {
+                // clearInterval 자체 제공 메소드
+                clearInterval(timer);
+
+                let secNum = 0;
+                timer = setInterval(function() {
+                    secNum++;
+                    num.innerHTML = secNum;
+                }, 10)
+            }
+        }
+
+
+    </script>
+</head>
+<body>
+    <div class="contWrap">
+        <button type="button" class="startBtn">더하기 시작</button>
+        <h1 class="num">0</h1>
+    </div>
+</body>
+</html>
