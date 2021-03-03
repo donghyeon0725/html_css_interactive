@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>연봉계산기</title>
+    <style>
+        body {
+            height: 100vh;
+        }
+        .contWrap {
+            position: relative;
+            width: 400px;
+            top: 40%;
+            left:50%;
+            transform: translate(-50%, -50%);
+            background-color: #e6e6e6;
+            text-align: center;
+            padding: 60px 60px;
+        }
+
+        .startBtn {
+            padding: 7px 10px;
+            font-size: 18px;
+        }
+
+        input {
+            border: 2px solid blue;
+            padding: 10px 10px;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .sec {
+            font-size: 18px;
+
+        }
+    </style>
+
+    <script>
+        window.onload = function () {
+            var startBtn = document.querySelector('.startBtn');
+            startBtn.addEventListener('click', setTimeCounter);
+
+            var timer;
+
+            function setTimeCounter() {
+                var salary = document.querySelector('input').value * 10000;
+                var secSec = document.querySelector('.sec');
+                var time = 60 * 60 * 24 * 365;
+                var sP1 = salary / time;
+                var sec = 0;
+                var nowMoney = 0;
+
+                clearInterval(timer);
+
+
+                timer = setInterval(function () {
+                    sec++;
+                    // toFixed(0) 소수점이 짤린다.  toFixed(1) 은 소수점 아래 1자리에서 짜름
+                    nowMoney = `당신은 ${sec}초에 ${( sec * sP1 ).toFixed(0)}원을 벌고 있습니다.`;
+                    secSec.innerHTML = nowMoney;
+                }, 1000);
+            }
+        }
+
+
+    </script>
+</head>
+<body>
+    <div class="contWrap">
+        <h3>연봉을 입력해보세요.(만)</h3>
+        <input type="number" value="5000">
+        <button type="button" class="startBtn">확인</button>
+        <p class="sec">당신은 1초에 얼마를 벌고 있을까요?</p>
+    </div>
+</body>
+</html>
