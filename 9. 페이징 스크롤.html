@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        body {
+            overflow: hidden;
+            transition: all 2s cubic-bezier(0.075, 0.82, 0.165, 1);
+        }
+
+        section {
+            /* width: 100vw; */
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .navi {
+            position: fixed;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            width: fit-content;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        button {
+            padding: 20px 60px;
+            font-size: 28px;
+        }
+
+
+
+    </style>
+
+    <script>
+        window.onload = function() {
+            let pageNum = 1;
+            let sections = document.getElementsByTagName('section');
+            let pageCount = sections.length;
+
+            let prevBtn = document.querySelector('.prevBtn')
+            let nextBtn = document.querySelector('.nextBtn')
+
+            var bgColorArr = ['#85FFBD','#FFFB7D','#E0C3FC','#00DBDE'];
+
+
+            prevBtn.addEventListener('click', prev);
+            nextBtn.addEventListener('click', next);
+
+            function prev() {
+                pageNum > 1 ? pageNum-- : pageNum = pageCount;
+                pageChange(pageNum)
+            }
+
+            function next() {
+                pageNum < pageCount ? pageNum++ : pageNum = 1;
+                pageChange(pageNum)
+            }
+
+            function pageChange(pageN) {
+                document.getElementsByTagName("body")[0].style.background = bgColorArr[pageN-1]
+                document.getElementsByTagName('h1')[0].innerHTML = `${pageN} 페이지 입니다.`;
+
+                //offsetTop => 부모의 꼭대기로 부터 떨어진 거리를 구해줌
+                window.scrollTo({
+                    top: sections[pageNum-1].offsetTop,
+                    behavior: 'smooth'
+                })
+            }
+
+            pageChange(1);
+
+        }
+
+    </script>
+</head>
+<body>
+    <div class="navi">
+        <button type="button" class="prevBtn">PREV</button>
+        <button type="button" class="nextBtn">NEXT</button>
+        <h1></h1>
+    </div><!-- display: relative 로 하면 일정 공간을 차지하므로 fixed로-->
+
+    <section>
+        <h2>page 1</h2>
+    </section>
+
+    <section>
+        <h2>page 2</h2>
+    </section>
+
+    <section>
+        <h2>page 3</h2>
+    </section>
+
+    <section>
+        <h2>page 4</h2>
+    </section>
+</body>
+</html>
