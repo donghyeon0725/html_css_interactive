@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        body {
+            overflow-x: hidden;
+            transition: all 2s cubic-bezier(0.075, 0.82, 0.165, 1);
+        }
+
+        section {
+            /* width: 100vw; */
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .navi {
+            position: fixed;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            width: fit-content;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+
+
+
+    </style>
+
+</head>
+<script>
+
+    window.onload = function() {
+
+        var h1 = document.getElementsByTagName('h1')[0];
+        var bgColorArr = ['#85FFBD','#FFFB7D','#E0C3FC','#00DBDE'];
+        var section = document.getElementsByTagName('section');
+        var pageNum = 0;
+
+
+
+        function pageChangeFunc() {
+            h1.innerHTML = (pageNum + 1) + " 페이지 입니다.";
+            document.getElementsByTagName('body')[0].style.background = bgColorArr[pageNum];
+            //console.log(bgColor[pageNum]);
+        }
+
+        pageChangeFunc();
+
+        // scroll 될 때마다 이벤트 호출
+        window.addEventListener("scroll", function(event) {
+            // 전역 실행컨택스트 객체인 window의 scrollY 높이를 구해옴
+            let scroll = this.scrollY;
+
+            // scroll2 = document.documentElement.scrollTop;
+            // console.log(scroll, scroll2);
+
+            // 스크롤 값이 페이지 섹션의 top 보정 값과 동일하면
+            /*if(scroll < section[1].offsetTop) {
+                pageNum = 0;
+            }
+            if (scroll > section[1].offsetTop) {
+                pageNum = 1;
+            }
+            if (scroll > section[2].offsetTop) {
+                pageNum = 2;
+            }
+            if (scroll > section[3].offsetTop) {
+                pageNum = 3;
+            }*/
+
+
+            //offsetHeight 는 섹션 하나의 너비를 구한다.
+            for (let i=0; i<section.length; i++) {
+                //scroll 현재 상단의 높이값
+                var sectionTop = section[i].offsetTop;
+                var sectionHeight = section[i].offsetHeight;
+                // window.outerHeight 현재 보이는 윈도우 페이지의 절반
+                console.log(window.outerHeight)
+                if (scroll > sectionTop - window.outerHeight / 2 && scroll < sectionTop + sectionHeight - window.outerHeight / 2 ) {
+                    pageNum = i;
+
+                    break;
+                }
+
+                // scroll의 높이 범위가 섹션의 시작 높이 보다 크고, 섹션 높이만큼 더한 끝 지점 보다 작으면 (그 사이에 들어오면)
+                /*if (scroll > section[i].offsetTop && scroll < section[i].offsetTop + section[i].offsetHeight) {
+                    pageNum = i;
+                    console.log(section[i].offsetTop);
+                    break;
+                }*/
+            }
+
+
+            pageChangeFunc()
+        })
+
+    }
+
+</script>
+<body>
+    <div class="navi">
+
+        <h1></h1>
+    </div><!-- display: relative 로 하면 일정 공간을 차지하므로 fixed로-->
+
+    <section>
+        <h2>page 1</h2>
+    </section>
+
+    <section>
+        <h2>page 2</h2>
+    </section>
+
+    <section>
+        <h2>page 3</h2>
+    </section>
+
+    <section>
+        <h2>page 4</h2>
+    </section>
+
+</body>
+</html>

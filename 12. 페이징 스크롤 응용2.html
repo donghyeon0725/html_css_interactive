@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        body {
+            background-color: #e8e19b;
+        }
+
+        section {
+            position: relative;
+            height: 100vh;
+            width: 100vw;
+            border-top: 1px dashed black;
+        }
+
+        section.active .image {
+            opacity: 1;
+        }
+
+        .innerWrap {
+            padding: 120px;
+            width: 340px;
+            margin-top: 50px;
+            z-index: 50;
+        }
+
+        .image {
+            position: fixed;
+            right: 5%;
+            top: 20%;
+            /*display:none*/
+            opacity: 0;
+            width: 800px;
+            transition: all 1s ease-in-out;
+        }
+
+        h1 {
+            color: #111;
+            text-align: center;
+            padding-top: 40vh;
+            font-size: 60px;
+        }
+
+        .pointWrap {
+            position: fixed;
+            right: 3vw;
+            top: 40%;
+            z-index: 100;
+        }
+
+        .pointWrap li {
+            list-style: none;
+            width: 12px;
+            height: 12px;
+            margin-top: 15px;
+            cursor:pointer;
+            background-color: #666;
+            border-radius: 50%;
+            transition: background .3s ease-out;
+        }
+
+        .pointWrap li.active {
+            background-color: #000;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<script>
+    window.onload = function () {
+        let section = document.getElementsByTagName('section');
+        //let pointBtn = document.querySelector('pointWrap').querySelectorAll('li');
+        let pointBtn = document.querySelectorAll('.pointWrap li');
+
+        let pageNum = 0;
+        let totalNum = section.length;
+
+
+        for (let i = 0; i < pointBtn.length; i++) {
+
+            /*pointBtn[i].onclick = function () {
+                pageNum = idx;
+                pageChangeFunc();
+
+                window.scrollTo({
+                    top: section[pageNum].offsetTop,
+                    behavior: 'smooth'
+                })
+            }*/
+
+            (function(idx) {
+                pointBtn[idx].onclick = function () {
+                    pageNum = idx;
+                    pageChangeFunc();
+
+                    window.scrollTo({
+                        top: section[pageNum].offsetTop,
+                        behavior: 'smooth'
+                    })
+                }
+            })(i)
+        }
+
+        //스크롤 이벤트
+        window.addEventListener('scroll', function(event) {
+            let scroll = this.scrollY;
+
+            for(let i=0; i<totalNum; i++) {
+                if (scroll > section[i].offsetTop - window.outerHeight / 1.5 && scroll < section[i].offsetTop - window.outerHeight / 1.5 + section[i].offsetHeight) {
+                    pageNum = i;
+                    break;
+                }
+            }
+            pageChangeFunc();
+        })
+
+        // 페이지 변경
+        function pageChangeFunc() {
+            for (let i=0; i<totalNum; i++) {
+                section[i].classList.remove('active');
+                //section[i].className = '';
+                pointBtn[i].classList.remove('active');
+            }
+            section[pageNum].classList.add('active');
+            pointBtn[pageNum].classList.add('active');
+        }
+
+    };
+
+</script>
+
+
+    <ul class="pointWrap">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+
+    <section>
+        <h1>페이지 타이틀</h1>
+    </section>
+
+    <section>
+        <img src="./resources/pic_1.jpg" alt="" class="image">
+        <div class="innerWrap">
+            <h2>page 1</h2>
+            <p>스케치를 한다.</p>
+        </div>
+    </section>
+
+
+    <section>
+        <img src="./resources/pic_2.jpg" alt="" class="image">
+        <div class="innerWrap">
+            <h2>page 2</h2>
+            <p></p>
+        </div>
+    </section>
+
+    <section>
+        <img src="./resources/pic_3.jpg" alt="" class="image">
+        <div class="innerWrap">
+            <h2>page 3</h2>
+            <p></p>
+        </div>
+    </section>
+
+    <section>
+        <img src="./resources/pic_4.jpg" alt="" class="image">
+        <div class="innerWrap">
+            <h2>page 4</h2>
+            <p></p>
+        </div>
+    </section>
+
+
+    <section>
+        <img src="./resources/pic_5.jpg" alt="" class="image">
+        <div class="innerWrap">
+            <h2>page 5</h2>
+            <p></p>
+        </div>
+    </section>
+
+
+    <section>
+        <img src="./resources/pic_6.jpg" alt="" class="image">
+        <div class="innerWrap">
+            <h2>page 6</h2>
+            <p></p>
+        </div>
+    </section>
+
+
+    <section>
+        <img src="./resources/pic_7.jpg" alt="" class="image">
+        <div class="innerWrap">
+            <h2>page 7</h2>
+            <p></p>
+        </div>
+    </section>
+</body>
+</html>
