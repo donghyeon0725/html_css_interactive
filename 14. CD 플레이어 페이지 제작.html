@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CD 플레이어</title>
+    <meta http-equiv="Content-Type" content="text/html;" charset="utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+    <!-- 시중에 널린 reset.css 로 마진 패딩 등등을 초기화 해주는 소스이다. -->
+    <link rel="stylesheet" href="./css/reset.css" type="text/css">
+    <!-- scss 로 작성해놓은 코드를 자동으로 변환해주는 플러그인을 사용하면 된다. 그렇게 해서 생긴 css 파일을 사용하면 된다.-->
+    <link rel="stylesheet" href="./css/motion.css" type="text/css">
+    <script type="text/javascript" src="./js/motion.js"></script>
+</head>
+<body>
+    <article class="contentWrap">
+        <section class="album active">
+            <div class="disk">
+                <div class="disk_inner"></div>
+            </div>
+            <a href="javascript:alert(1)" class="coverImg">
+                <img src="./image/iu_0.jpg" alt="" >
+            </a>
+        </section>
+
+        <section class="album">
+            <div class="disk">
+                <div class="disk_inner"></div>
+            </div>
+            <a href="javascript:alert(1)" class="coverImg">
+                <img src="./image/iu_1.jpg" alt="" >
+            </a>
+        </section>
+
+        <section class="album">
+            <div class="disk">
+                <div class="disk_inner"></div>
+            </div>
+            <a href="javascript:alert(1)" class="coverImg">
+                <img src="./image/iu_2.jpg" alt="" >
+            </a>
+        </section>
+
+    </article>
+
+    <div class="buttonWrap">
+        <button type="button">PREV</button>
+        <ul class="pointWrap">
+            <li class="active"></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <button type="button">NEXT</button>
+    </div>
+</body>
+</html>
