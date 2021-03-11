@@ -7,13 +7,18 @@
 정리
 -
 
-JS 메소드 리스트
+JS 정리
 -
-* [모바일 기기 여부 체크](./README/js/mobileCheck.md "모바일 기기 여부 체크")
+* [모바일 기기 여부 체크 메소드](./README/js/mobileCheck.md "모바일 기기 여부 체크")
+* [스크롤 해주는 api](./README/js/scroll.md "스크롤 해주는 api")
+* [offset 속성](./README/js/offset.md "offset 속성")
+* [모바일 터치 이벤트](./README/js/mobileTouch.md "모바일 터치 이벤트")
+* [클래스를 다루는 API](./README/js/classAddAndRemove.md "클래스를 다루는 API")
 
 CSS 속성 정리
 -
 * [transition](./README/css/transition.md "transition")
+* [cubic-bezier](./README/css/cubic-bezier.md "cubic-bezier")
 
 
 Plugins (IntelliJ)
