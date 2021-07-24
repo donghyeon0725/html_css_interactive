@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <style>
+
+
+        html, body, div, span, applet, object, iframe,
+        h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+        a, abbr, acronym, address, big, cite, code,
+        del, dfn, em, img, ins, kbd, q, s, samp,
+        small, strike, strong, sub, sup, tt, var,
+        b, u, i, center,
+        dl, dt, dd, ol, ul, li,
+        fieldset, form, label, legend,
+        table, caption, tbody, tfoot, thead, tr, th, td,
+        article, aside, canvas, details, embed,
+        figure, figcaption, footer, header, hgroup,
+        menu, nav, output, ruby, section, summary,
+        time, mark, audio, video {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font-size: 100%;
+            font: inherit;
+            vertical-align: baseline;
+        }
+
+        /* HTML5 display-role reset for older browsers */
+        article, aside, details, figcaption, figure,
+        footer, header, hgroup, menu, nav, section {
+            display: block;
+        }
+
+        body {
+            line-height: 1;
+        }
+
+        ol, ul {
+            list-style: none;
+        }
+
+        blockquote, q {
+            quotes: none;
+        }
+
+        blockquote:before, blockquote:after,
+        q:before, q:after {
+            content: '';
+            content: none;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        @font-face {
+            font-family: 'IM_Hyemin-Bold';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1/IM_Hyemin-Bold.woff2') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Cafe24Ssurround';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+            font-weight: 100;
+            font-style: normal;
+        }
+
+        body {
+            font-family: Cafe24Ssurround, IM_Hyemin-Bold, serif;
+        }
+
+        body::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera*/
+        }
+
+        .plyr {
+            display: none;
+        }
+
+        .fullbox {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+        }
+
+        .container {
+            width: 1100px;
+            height: 100vh;
+            background-color: #F7F7FA;
+        }
+
+        .advertising {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50px;
+            animation-duration: 1s;
+
+        }
+
+        .advertising span.text {
+            font-weight: bold;
+        }
+
+        .title div.close {
+            position: absolute;
+            right: 4%;
+            top: 0;
+            margin-top: 18px;
+            cursor: pointer;
+        }
+
+        .title {
+            width: fit-content;
+            padding: 8px;
+        }
+
+        .nav {
+            height: 100px;
+            background-color: #2C2C2C;
+        }
+
+
+        .player-icon {
+            position: fixed;
+            right: 7%;
+            bottom: 7%;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(120deg, #000, #333333, #000);
+            border-radius: 100%;
+            cursor: pointer;
+        }
+
+
+        .disk-icon {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            width: 22px;
+            height: 22px;
+            background-color: #2BD2FF;
+            border-radius: 100%;
+        }
+
+        .hidden {
+            display: none;
+            opacity: 0;
+        }
+
+        .appear {
+            animation: fade-in 1s;
+            animation-fill-mode: forwards;
+        }
+
+        .disappear {
+            animation: fade-out 1s;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fade-out {
+            from {
+                opacity: 1;
+
+            }
+            to {
+                opacity: 0;
+            }
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            height: 46px;
+        }
+
+        .right {
+            color: #F3F3F3;
+        }
+
+        .page {
+            display: flex;
+            justify-content: space-between;
+            width: 240px;
+            padding: 16px;
+        }
+
+        .page > div:hover {
+            color: #2BD2FF;
+        }
+
+        .signup {
+            cursor: pointer;
+        }
+
+        .service-center {
+            cursor: pointer;
+            position: relative;
+            height: 30px;
+        }
+
+        .service-center-box {
+            position: absolute;
+            width: fit-content;
+            top: 30px;
+            left: -34px;
+
+        }
+
+        .service-center-box li {
+            background-color: #e1e1e6;
+            width: 106px;
+            white-space: nowrap;
+            padding: 16px;
+            text-align: center;
+            border-bottom: 1px solid #cacaca;
+            border-right: 1px solid #cacaca;
+            border-left: 1px solid #cacaca;
+        }
+
+        .service-center-box li:hover {
+            background-color: #cacaca;
+        }
+
+        .login {
+            cursor: pointer;
+        }
+
+        .loggo {
+
+            font-weight: bold;
+            padding: 16px;
+        }
+
+        .loggo .first {
+            color: rgb(66, 133, 244);
+        }
+
+        .loggo .second {
+            color: rgb(234, 67, 53);
+        }
+
+        .loggo .third {
+            color: rgb(251, 188, 5);
+        }
+
+        .loggo .fourth {
+            color: rgb(66, 133, 244);
+        }
+
+        .loggo .fifth {
+            color: rgb(52, 168, 83);
+        }
+
+        .loggo .sixth {
+            color: rgb(234, 67, 53);
+        }
+
+        .banner {
+            overflow: hidden;
+            height: 630px;
+        }
+
+        .slider {
+            width: 400%;
+            margin-left: 0;
+            transition: all 1s ease;
+        }
+
+        .slider img {
+            width: 25%;
+            float: left;
+            object-fit: cover;
+        }
+
+        @keyframes rotateAni {
+            0% {
+                transform: rotate(0);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .player-container {
+            display: none;
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(120deg, #0272a4, #f6a564);
+            position: fixed;
+            border-radius: 20px;
+            right: 5%;
+            bottom: 5%;
+        }
+
+        .player-container.active {
+            display: block;
+        }
+
+        .player-covers {
+            width: 400px;
+            height: 400px;
+        }
+
+        .player-section {
+            visibility: hidden;
+            opacity: 0;
+            width: 240px;
+            height: 160px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+        }
+
+        .player-section.active {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .player-section:hover .player-disk {
+            left: 90px;
+        }
+
+        .player-section.active .player-cover {
+            left: 70px;
+        }
+
+        .player-section.active .player-disk {
+            left: 75px;
+            transition-delay: 0.5s;
+        }
+
+        .player-cover {
+            top: 50%;
+            left: 80px;
+            transform: translate(-50%, -50%);
+            position: absolute;
+            width: 160px;
+            height: 160px;
+            box-shadow: 2px 14px 40px rgb(0 0 0.3);
+        }
+
+        .player-section:nth-of-type(1) .player-cover {
+            background: url("http://image.genie.co.kr/Y/IMAGE/IMG_ALBUM/082/097/311/82097311_1624945240926_1_600x600.JPG");
+            background-size: cover;
+        }
+
+
+        .player-section:nth-of-type(2) .player-cover {
+            background: url("https://image.bugsm.co.kr/album/images/500/5031/503179.jpg");
+            background-size: cover;
+        }
+
+
+        .player-section:nth-of-type(3) .player-cover {
+            background: url("https://images.chosun.com/resizer/X82BBqflkR1yM6P3P-DOLNcBO6o=/464x0/smart/cloudfront-ap-northeast-1.images.arcpublishing.com/chosun/I2XCE73POOI645ZUZXY45J52GQ.jpg");
+            background-size: cover;
+        }
+
+
+        .player-disk {
+            width: 150px;
+            height: 150px;
+            position: absolute;
+            top: 6px;
+            left: 0;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(120deg, #000, #333333, #000);
+            box-shadow: 4px 14px 40px rgb(0 0 0.3);
+            border-radius: 100%;
+            transition: left 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: rotateAni 10s ease infinite;
+        }
+
+        .player-disk .player-disk-inner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background-color: aquamarine;
+            border-radius: 50%;
+        }
+
+        .player-disk .player-disk-inner::after {
+            position: absolute;
+            content: "";
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 7px;
+            height: 7px;
+            background-color: black;
+            border-radius: 50%;
+        }
+
+        .player-section:nth-of-type(1) .player-disk-inner {
+            background-color: rgb(2, 114, 164);
+        }
+
+        .player-section:nth-of-type(2) .player-disk-inner {
+            background-color: rgb(255, 87, 51);
+        }
+
+        .player-section:nth-of-type(3) .player-disk-inner {
+            background-color: rgb(183, 192, 201);
+        }
+
+        .player-interface {
+            width: 100%;
+            height: 50px;
+            position: absolute;
+            bottom: 0;
+        }
+
+        .player-interface-wrap {
+            display: flex;
+            width: fit-content;
+            margin: auto;
+        }
+
+        .player-interface-wrap div {
+            padding: 8px;
+        }
+
+        .player-interface-wrap .play {
+            display: none;
+        }
+
+        .player-interface-wrap .pause {
+            display: none;
+        }
+
+        .player-interface-wrap .play.active {
+            display: block;
+        }
+
+        .player-interface-wrap .pause.active {
+            display: block;
+        }
+
+        .tail {
+            visibility: hidden;
+            position: absolute;
+            top: -30px;
+            right: 8px;
+            width: 0px;
+            height: 0px;
+            border-top: 20px solid transparent;
+            border-bottom: 20px solid red;
+            border-right: 20px solid transparent;
+            border-left: 20px solid transparent;
+            transform:rotate(180deg);
+            transition: visibility 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .tail.active {
+            visibility: visible;
+        }
+    </style>
+</head>
+<body>
+
+
+<div class="fullbox">
+    <div class="container">
+        <div class="advertising appear">
+            <div class="title">
+                <span class="text">노래 재생 목록 모두 맞추면 경품 있음!</span>
+                <div class="close">닫기</div>
+            </div>
+        </div>
+        <div class="nav">
+            <div class="left">
+                <div class="loggo">
+                    <span class="first">G</span>
+                    <span class="second">o</span>
+                    <span class="third">o</span>
+                    <span class="fourth">g</span>
+                    <span class="fifth">l</span>
+                    <span class="sixth">e</span>
+                </div>
+            </div>
+            <div class="right">
+                <div class="page">
+                    <div class="signup">회원가입</div>
+                    <div class="service-center">
+                        <div class="text">고객센터</div>
+                        <ul class="service-center-box hidden">
+                            <li>공지하기</li>
+                            <li>신고하기</li>
+                            <li>이벤트</li>
+
+                        </ul>
+                    </div>
+                    <div class="login">로그인</div>
+                </div>
+            </div>
+        </div>
+        <div class="banner">
+            <div class="slider">
+                <img src="https://images.unsplash.com/photo-1514897575457-c4db467cf78e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80">
+                <img src="https://images.unsplash.com/photo-1526958097901-5e6d742d3371?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80">
+                <img src="https://images.unsplash.com/photo-1477005264461-b0e201668d92?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80">
+                <img src="https://images.unsplash.com/photo-1496450681664-3df85efbd29f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80">
+            </div>
+        </div>
+
+
+        <div class="cdPlayer">
+            <div class="player-icon" onclick="showPlayerList()" style="z-index: 1">
+                <div class="tail active" style=""></div>
+                <div class="disk-icon"></div>
+            </div>
+            <div class="player-container">
+                <div class="player-buttons"></div>
+                <div class="player-covers">
+
+                    <div class="player-section active">
+                        <div class="player-disk">
+                            <div class="player-disk-inner"></div>
+                        </div>
+                        <div class="player-cover "></div>
+                    </div>
+
+                    <div class="player-section">
+                        <div class="player-disk">
+                            <div class="player-disk-inner"></div>
+                        </div>
+                        <div class="player-cover"></div>
+                    </div>
+
+                    <div class="player-section">
+                        <div class="player-disk">
+                            <div class="player-disk-inner"></div>
+                        </div>
+                        <div class="player-cover"></div>
+                    </div>
+                </div>
+
+                <div class="player-interface">
+                    <div class="player-interface-wrap">
+                        <div class="prev" onclick="prevAlbum()"><i class="fas fa-backward"></i></div>
+                        <div onclick="playMusic()" class="play active"><i class="fas fa-play"></i></div>
+                        <div onclick="pauseMusic()" class="pause"><i class="fas fa-pause"></i></div>
+                        <div class="next" onclick="nextAlbum()"><i class="fas fa-forward"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="js-player" data-plyr-provider="youtube" data-plyr-embed-id="https://www.youtube.com/watch?v=0CS8qFgFHxU" style="display: none"></div>
+<div class="js-player" data-plyr-provider="youtube" data-plyr-embed-id="https://www.youtube.com/watch?v=EHTagN5HJKQ" style="display: none"></div>
+<div class="js-player" data-plyr-provider="youtube" data-plyr-embed-id="https://www.youtube.com/watch?v=e6KLYDVecy0" style="display: none"></div>
+
+<script src="https://cdn.plyr.io/3.6.8/plyr.js"></script>
+<script>
+
+
+    const players = Array.from(document.querySelectorAll('.js-player')).map(p => new Plyr(p));
+    let banner = 0;
+
+    let music = 0;
+
+    // 이벤트 닫기 버튼
+    document.querySelector('.close').addEventListener('click', function () {
+        alert('우측 아래, 노래 제목을 맞춰보세요');
+        const target = document.querySelector('.advertising');
+        if (target.classList.contains('appear')) {
+            target.classList.add('disappear');
+            setTimeout(function () {
+                target.classList.add('hidden')
+            }, 400);
+        }
+    });
+
+    // 고객센터
+    document.querySelector('.service-center').addEventListener('mouseover', function () {
+        const target = document.querySelector('.service-center-box');
+
+        if (target.classList.contains('hidden'))
+            target.classList.remove('hidden');
+    })
+
+    // 고객센터 out
+    document.querySelector('.service-center').addEventListener('mouseout', function () {
+        const target = document.querySelector('.service-center-box');
+
+        if (!target.classList.contains('hidden'))
+            target.classList.add('hidden');
+    })
+
+
+    // 모든 앨범 끄기
+    function disableAlbum() {
+        let sections = document.querySelectorAll('.player-section');
+
+        for (let section of sections) {
+            if (section.classList.contains('active')) {
+                section.classList.remove('active');
+            }
+
+        }
+    }
+
+    // 이전 앨범
+    function prevAlbum() {
+        let sections = document.querySelectorAll('.player-section');
+
+        onPauseMusic();
+        disableAlbum();
+        stopAllMusic();
+
+        music = music > 0 ? --music : 2;
+
+        sections[music].classList.add('active');
+    }
+
+    // 다음 앨범
+    function nextAlbum() {
+        let sections = document.querySelectorAll('.player-section');
+
+        onPauseMusic();
+        disableAlbum();
+        stopAllMusic();
+
+        music = music < 2 ? ++music : 0;
+
+        sections[music].classList.add('active');
+    }
+
+
+    // 음악좀 다 꺼줘
+    function stopAllMusic() {
+        for (let player of players)
+            player.stop();
+    }
+
+    // 음악 재생
+    function playMusic() {
+        players[music].play();
+        onPlayMusic();
+    }
+
+    // 음악 중지
+    function pauseMusic() {
+        players[music].pause();
+        onPauseMusic();
+    }
+
+    // 음악 재생중 pause 버튼 활성화
+    function onPlayMusic() {
+        document.querySelector('.player-interface-wrap .play').classList.remove('active')
+        document.querySelector('.player-interface-wrap .pause').classList.add('active')
+    }
+
+    // 음악 일시 중지 중에 play 버튼 활성화
+    function onPauseMusic() {
+        document.querySelector('.player-interface-wrap .pause').classList.remove('active')
+        document.querySelector('.player-interface-wrap .play').classList.add('active')
+    }
+
+
+    // play list
+    function showPlayerList() {
+        if (document.querySelector('.player-container').classList.contains('active'))
+            document.querySelector('.player-container').classList.remove('active');
+        else
+            document.querySelector('.player-container').classList.add('active');
+    }
+
+    function hasNextBanner() {
+        banner = banner > 2 ? 0 : ++banner;
+
+        document.querySelector('.slider').style.marginLeft = `-${banner * 100}%`;
+    }
+
+    function removeTail() {
+        document.querySelector('.player-icon .tail').classList.remove('active')
+    }
+
+    function addTail() {
+        document.querySelector('.player-icon .tail').classList.add('active')
+    }
+
+
+
+    // 슬라이더 배너 변경
+    setInterval(hasNextBanner, 2000);
+
+    // tail 표시
+    setTimeout(removeTail, 500);
+    setTimeout(addTail, 1400);
+    setTimeout(removeTail, 2000);
+
+</script>
+</body>
+
+</html>
